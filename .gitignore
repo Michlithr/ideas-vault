@@ -1,0 +1,35 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+.output/
+
+# Environment variables
+.env
+*.env
+!.env.example
+
+# IDE & OS
+.DS_Store
+.vscode/
+.idea/
+
+# Prisma
+backend/prisma/*.db
+
+# Product artifacts
+db-model-mvp.drawio
+image.png
+interview-results.md
+
+# temporary ai setup
+.agents
+**/.agents
+.claude
+**/.claude
+.windsurf
+**/.windsurf
+**/skills-lock.json

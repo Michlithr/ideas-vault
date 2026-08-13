@@ -1,0 +1,19 @@
+### Get household by id
+GET http://localhost:3000/households/sk8vfrli599xrooqikxpub5c
+Content-Type: application/json
+
+### Create household
+POST http://localhost:3000/households
+Content-Type: application/json
+
+{
+  "name": "Test Household"
+}
+
+### Create household - invalid payload
+POST http://localhost:3000/households
+
+Content-Type: application/json
+{
+  "name": "ab"
+}

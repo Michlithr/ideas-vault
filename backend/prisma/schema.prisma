@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+
+  // Output lives inside `src` on purpose: the `prisma-client` generator emits
+  // TypeScript, so the client has to be part of the Nest compilation. Keeping it
+  // under `src` lets the Nest CLI rewrite the `@prisma-client` alias to a relative
+  // require and makes the compiled client land in `dist` with the rest of the app.
+  output = "../src/generated/prisma"
+
+  // The app compiles to CommonJS. Without this the generated client uses
+  // `import.meta.url`, Node then loads it as ESM and its internal requires break.
+  moduleFormat = "cjs"
+
+  // CommonJS output resolves relative imports without an extension; the default
+  // ".js" suffix points at files that only exist as ".ts" and breaks jest.
+  importFileExtension = ""
+}
+
+datasource db {
+  provider = "postgresql"
+}

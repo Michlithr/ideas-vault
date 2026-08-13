@@ -1,0 +1,5 @@
+.env
+
+# Generated Prisma client (recreated by `prisma generate`)
+/src/generated
+/coverage

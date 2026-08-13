@@ -1,0 +1,16 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "setupFiles": ["dotenv/config"],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@prisma-client$": "<rootDir>/../src/generated/prisma/client",
+    "^@modules/(.*)$": "<rootDir>/../src/modules/$1",
+    "^@enums/(.*)$": "<rootDir>/../src/enums/$1",
+    "^@consts/(.*)$": "<rootDir>/../src/consts/$1"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+
+# The Prisma client is generated inside the image; never ship the host copy.
+src/generated
+
+.env
+*.log
