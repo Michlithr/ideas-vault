@@ -24,14 +24,18 @@ export class HouseholdService {
         data: { name: dto.name },
       })
     } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === PrismaErrorCodes.UNIQUE_CONSTRAINT_ERROR
-      ) {
-        throw new ConflictException(`Household with name "${dto.name}" already exists`)
-      }
-
-      throw error
+      this.handleCreateHouseholdError(error, dto.name)
     }
+  }
+
+  private handleCreateHouseholdError(error: unknown, householdName: string): never {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === PrismaErrorCodes.UNIQUE_CONSTRAINT_ERROR
+    ) {
+      throw new ConflictException(`Household with name "${householdName}" already exists`)
+    }
+
+    throw error
   }
 }

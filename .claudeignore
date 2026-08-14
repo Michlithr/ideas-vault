@@ -1,0 +1,37 @@
+# Dependency directories and cache files
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.pfx
+
+# SSH keys and cloud access credentials
+id_rsa
+id_rsa.*
+*.pub
+
+# Dependency directories and cache files
+node_modules/
+.git/
+.venv/
+dist/
+build/
+
+# IDE/Editor settings with potential secrets
+.vscode/settings.json
+.idea/
+
+# Package manager credentials
+.npmrc
+.yarn/secrets
+
+# Prisma-specific
+.env.local
+
+# Docker/Container secrets
+docker-compose.override.yml
+
+# OS/Tool secrets
+.DS_Store
+.env.production.local
