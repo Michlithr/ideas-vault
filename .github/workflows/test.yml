@@ -16,6 +16,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+          cache-dependency-path: './backend/package-lock.json'
       - run: npm ci
       - run: npm run test:cov
         working-directory: ./backend
