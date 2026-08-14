@@ -1,4 +1,4 @@
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test } from '@nestjs/testing'
 import { HouseholdController } from './household.controller'
 import { HouseholdService } from './household.service'
 import type { Household } from '@prisma-client'
@@ -19,7 +19,7 @@ describe('HouseholdController', () => {
       createHousehold: jest.fn(),
     }
 
-    const module: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
       controllers: [HouseholdController],
       providers: [{ provide: HouseholdService, useValue: service }],
     }).compile()
