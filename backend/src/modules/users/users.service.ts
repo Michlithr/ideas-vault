@@ -13,11 +13,11 @@ export class UsersService {
   constructor(private readonly prisma: PrismaService) { }
 
   async findById(id: string): Promise<Omit<User, 'password'>> {
-    return await this.findUnique({ id })
+    return this.stripPassword(await this.findUnique({ id }))
   }
 
   async findByUsername(username: string): Promise<Omit<User, 'password'>> {
-    return await this.findUnique({ username })
+    return this.stripPassword(await this.findUnique({ username }))
   }
 
   private async findUnique(where: Prisma.UserWhereUniqueInput): Promise<User> {
@@ -28,10 +28,15 @@ export class UsersService {
     return user
   }
 
+  private stripPassword(user: User): Omit<User, 'password'> {
+    const { password, ...rest } = user
+    return rest
+  }
+
   async createUser(dto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const passwordHash = await bcrypt.hash(dto.password, SALT_ROUND)
     try {
-      const { password, ...user } = await this.prisma.user.create({
+      const user = await this.prisma.user.create({
         data: {
           username: dto.username,
           password: passwordHash,
@@ -39,7 +44,7 @@ export class UsersService {
           displayName: dto.displayName ?? null
         }
       })
-      return user
+      return this.stripPassword(user)
     } catch (error) {
       this.handleCreateUserError(error)
     }

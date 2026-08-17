@@ -1,1 +1,1 @@
-export const SALT_ROUND = 10 as const
+export const SALT_ROUND = 12 as const
