@@ -10,9 +10,6 @@ public class UserConfiguration : BaseEntityConfiguration<User>
   {
     base.Configure(builder);
 
-    builder.ToTable(t => t.HasCheckConstraint(
-      "CK_Users_Username_NotBlank",
-      "btrim(\"Username\") <> ''"));
     builder.Property(user => user.Username)
       .HasColumnType("citext")
       .HasMaxLength(50);
@@ -26,7 +23,7 @@ public class UserConfiguration : BaseEntityConfiguration<User>
         t.HasCheckConstraint("CK_Users_Username_NotBlank",
           "btrim(\"Username\") <> ''");
         t.HasCheckConstraint("CK_Users_Username_Length",
-          "char_length(\"Username\") <= 50");   // backs up the citext/maxlength question
+          "char_length(\"Username\") <= 50");
         t.HasCheckConstraint("CK_Users_DisplayName_NotBlank",
           "\"DisplayName\" IS NULL OR btrim(\"DisplayName\") <> ''");
       });

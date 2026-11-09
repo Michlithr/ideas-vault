@@ -1,6 +1,4 @@
-using IdeasVault.Api.Data.Configurations;
 using IdeasVault.Api.Entities;
-using IdeasVault.Api.Entities.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeasVault.Api.Data;
