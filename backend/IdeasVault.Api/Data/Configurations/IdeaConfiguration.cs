@@ -24,7 +24,7 @@ public class IdeaConfiguration : BaseEntityConfiguration<Idea>
       .OnDelete(DeleteBehavior.Restrict);
 
     builder.HasOne(idea => idea.Household)
-      .WithMany()
+      .WithMany(household => household.Ideas)
       .HasForeignKey(idea => idea.HouseholdId)
       .OnDelete(DeleteBehavior.Restrict);
 
