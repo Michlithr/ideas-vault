@@ -7,6 +7,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
   public DbSet<Household> Households => Set<Household>();
   public DbSet<User> Users => Set<User>();
+  public DbSet<Label> Labels => Set<Label>();
+  public DbSet<Idea> Ideas => Set<Idea>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

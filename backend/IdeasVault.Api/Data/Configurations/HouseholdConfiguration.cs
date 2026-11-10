@@ -11,7 +11,11 @@ public class HouseholdConfiguration : BaseEntityConfiguration<Household>
     base.Configure(builder);
 
     builder.Property(household => household.Name).HasColumnType("citext");
-    builder.HasIndex(household => household.Name).IsUnique();
-    builder.Property(household => household.Name).HasMaxLength(50);
+
+    builder.ToTable(table =>
+      {
+        table.HasCheckConstraint("CK_Households_Name_NotBlank",
+          "btrim(\"Name\") <> ''");
+      });
   }
 }

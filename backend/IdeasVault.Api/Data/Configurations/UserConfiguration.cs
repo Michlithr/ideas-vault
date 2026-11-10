@@ -10,10 +10,8 @@ public class UserConfiguration : BaseEntityConfiguration<User>
   {
     base.Configure(builder);
 
-    builder.Property(user => user.Username)
-      .HasColumnType("citext")
-      .HasMaxLength(50);
     builder.HasIndex(user => user.Username).IsUnique();
+    builder.Property(user => user.Username).HasColumnType("citext");
 
     builder.Property(user => user.PasswordHash).HasMaxLength(255);
     builder.Property(user => user.DisplayName).HasMaxLength(50);
@@ -22,8 +20,6 @@ public class UserConfiguration : BaseEntityConfiguration<User>
       {
         t.HasCheckConstraint("CK_Users_Username_NotBlank",
           "btrim(\"Username\") <> ''");
-        t.HasCheckConstraint("CK_Users_Username_Length",
-          "char_length(\"Username\") <= 50");
         t.HasCheckConstraint("CK_Users_DisplayName_NotBlank",
           "\"DisplayName\" IS NULL OR btrim(\"DisplayName\") <> ''");
       });
