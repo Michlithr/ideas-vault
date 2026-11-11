@@ -22,10 +22,11 @@ A shared place for two people in one household to save ideas (places, recipes, f
 5. `dotnet run --project backend/IdeasVault.Api`  (serves on http://localhost:5132)
 
 ## Run everything in Docker
-`docker compose up --build`
+1. Complete step 1 above (`.env` is required, Compose won't start without it)
+2. `docker compose up --build`
+3. Migrations are not applied automatically yet. From the host, run step 3 (user-secrets, the host needs DB settings too) and then step 4.
 
-The backend is exposed on `BACKEND_PORT`. DB settings come from compose, so step 3 above isn't needed.
-Migrations are not applied automatically yet: run step 4 once from the host after the DB is up.
+The backend is exposed on `BACKEND_PORT`. Compose supplies the DB settings to the container only, not to the host.
 
 TODO: consider applying migrations at startup (`Database.Migrate()`) so `docker compose up` works on a
 fresh clone without the manual step. Fine for dev and a single instance. For production, prefer a separate
