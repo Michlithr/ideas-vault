@@ -20,7 +20,11 @@ services:
 
   backend:
     environment:
-      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
+      Db__Host: postgres
+      Db__Port: "5432"
+      Db__Name: ${POSTGRES_DB}
+      Db__User: ${POSTGRES_USER}
+      Db__Password: ${POSTGRES_PASSWORD}
     build:
       context: ./backend
       dockerfile: Dockerfile
