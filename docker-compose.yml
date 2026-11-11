@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${POSTGRES_PORT:?set POSTGRES_PORT in .env}:5432"
     volumes: 
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -19,12 +19,18 @@ services:
     restart: unless-stopped
 
   backend:
+    environment:
+      Db__Host: postgres
+      Db__Port: "5432"
+      Db__Name: ${POSTGRES_DB}
+      Db__User: ${POSTGRES_USER}
+      Db__Password: ${POSTGRES_PASSWORD}
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: ideas_vault_be
     ports:
-      - "${BACKEND_PORT}:8080"
+      - "${BACKEND_PORT:?set BACKEND_PORT in .env}:8080"
     depends_on:
       postgres:
         condition: service_healthy

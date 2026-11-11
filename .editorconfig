@@ -1,0 +1,9 @@
+root = true
+
+[*.cs]
+indent_style = space
+indent_size = 2
+
+[**/Migrations/*.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
