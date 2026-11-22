@@ -25,6 +25,7 @@ services:
       Db__Name: ${POSTGRES_DB}
       Db__User: ${POSTGRES_USER}
       Db__Password: ${POSTGRES_PASSWORD}
+      Jwt__Secret: ${JWT_SECRET}
     build:
       context: ./backend
       dockerfile: Dockerfile

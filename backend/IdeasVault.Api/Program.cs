@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddHealth();
+builder.Services.AddAuth(builder.Configuration);
 
 var app = builder.Build();
 
